@@ -1,0 +1,324 @@
+{
+	"info": {
+		"name": "collectionApollo",
+		"_postman_id": "cb58b952-63f4-4431-a3b3-c4a58b4f57aa",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetRequest",
+			"description": "",
+			"item": [
+				{
+					"name": "Login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "UserName",
+									"value": "y@y.com",
+									"description": ""
+								},
+								{
+									"key": "Password",
+									"value": "Abcd@123",
+									"description": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/Authentication/Login/Apollo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Authentication",
+								"Login",
+								"Apollo"
+							]
+						},
+						"description": "Will generate a token for the person whose credentials were passed in."
+					},
+					"response": []
+				},
+				{
+					"name": "Address Controller - GET Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "247d8f34-3741-4ba8-82cd-4f01032995a8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"verify the Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "UserName",
+									"value": "y@y.com",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "Abcd@123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart/Address?PersonID=4590",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart",
+								"Address"
+							],
+							"query": [
+								{
+									"key": "PersonID",
+									"value": "4590",
+									"equals": true
+								}
+							]
+						},
+						"description": "Will generate a token for the person whose credentials were passed in."
+					},
+					"response": []
+				},
+				{
+					"name": "User Order History Controller - GET Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CCAccountNumber\": \"5105105105105100\",\r\n  \"CCExpireDate\": \"10/2025\",\r\n  \"PayTypeID\": 7,\r\n  \"CCSecurityNumber\": \"123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart/UserOrderHistory?ProductID=32",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart",
+								"UserOrderHistory"
+							],
+							"query": [
+								{
+									"key": "ProductID",
+									"value": "32",
+									"equals": true
+								}
+							]
+						},
+						"description": "SPM"
+					},
+					"response": []
+				},
+				{
+					"name": "Guest Cart Controller - POST Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Items\": [\r\n    {\r\n      \"ProductID\": \"34\",\r\n      \"Quantity\": 2\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart/GuestCart",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart",
+								"GuestCart"
+							]
+						},
+						"description": "Add a general product to an existing cart."
+					},
+					"response": []
+				},
+				{
+					"name": "General Controller - POST (Add Product) Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"ShoppingCartID\": -1,\r\n\r\n    \"ShipToID\" : 4590,\r\n\r\n    \"ProductID\": 32,\r\n\r\n    \"Quantity\": 1,\r\n\r\n    \"CartDetails\":0\r\n\r\n} "
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart/General",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart",
+								"General"
+							]
+						},
+						"description": "Demoing a kit product to show the Parent Sequence field being returned."
+					},
+					"response": []
+				},
+				{
+					"name": "Shopping Cart Controller - GET Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"returnServerChanges\": \"true\",\r\n  \"geRecords\": [{\r\n    \"entity\": \"Persons\",\r\n    \"recordId\": 2560,\r\n    \"clientRecordVersion\": \"660090\",\r\n    \"clientSaveDate\": \"2017-11-09T09:47:42.104Z\",\r\n    \"fields\": [{\r\n        \"fieldName\": \"FirstName\",\r\n        \"base64Encoded\": false,\r\n        \"newValue\": \"rtestcvbccvbcv\",\r\n        \"oldValue\": \"rtest\"\r\n      },\r\n      {\r\n        \"fieldName\": \"_WebUserID\",\r\n        \"newValue\": 17,\r\n        \"oldValue\": \"\"\r\n      }\r\n    ],\r\n    \"pendingChangeGuid\": \"ba998e2a-3558-419e-8a18-80826a62dde7\"\r\n  }]\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart?ID=4130",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart"
+							],
+							"query": [
+								{
+									"key": "ID",
+									"value": "4130\n",
+									"equals": true
+								}
+							]
+						},
+						"description": "Will get the cart based on the ID passed in."
+					},
+					"response": []
+				},
+				{
+					"name": "General Controller - POST(update-more)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n   \"ShoppingCartID\": 5219,\r\n\r\n   \"Sequence\" :1,\r\n\r\n   \"ShipToID\" :2,\r\n\r\n   \"ShipToAddrLine1\": \"123 Test Av.\",\r\n\r\n   \"ShipToAddrLine2\": \"Apt 223\",\r\n\r\n   \"ShipToAddrLine3\": \"\",\r\n\r\n   \"ShipToZipCode\": \"22983\",\r\n\r\n   \"ShipToCity\": \"Tysons Corner\",\r\n\r\n   \"ShipToState\": \"VA\",\r\n\r\n   \"ShipToCounty\" :\"abc\",\r\n\r\n   \"ShipToCountryCodeID\": 222 ,\r\n\r\n   \"ShipTypeId\" :1\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/ShoppingCart/General",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ShoppingCart",
+								"General"
+							]
+						},
+						"description": "Add a general product to an existing cart."
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "Abcd@123",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "y@y.com",
+						"type": "string"
+					}
+				]
+			}
+		},
+		{
+			"name": "Postrequest",
+			"description": "",
+			"item": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "Abcd@123",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "y@y.com",
+						"type": "string"
+					}
+				]
+			}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Abcd@123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "y@y.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "24f98ace-379a-43a7-947f-668316d82d1a",
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"hello Angita your test is started \");",
+					"let urlVAL=pm.variables.get(\"url\");",
+					"console.log(\"value for url variable is :->>>\"+urlVAL);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "344e0f8c-7a11-4a62-87b8-bfef2e1639bf",
+				"type": "text/javascript",
+				"exec": [
+					"// example using pm.response.to.have",
+					"pm.test(\"Verfiy the response is ok\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "47ecded1-eb4f-446c-a9aa-e983172bae31",
+			"key": "url",
+			"value": "https://fullsetup1.aptify.com/SOA/services",
+			"type": "text",
+			"description": ""
+		}
+	]
+}
